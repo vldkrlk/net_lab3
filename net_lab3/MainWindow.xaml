@@ -5,8 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:net_lab3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="566" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="220px"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Новий девайс" Grid.Row="1">
+            <StackPanel Orientation="Vertical" Margin="10,5,10,10">
+                <Label Content="Тип девайса" />
+                <ComboBox x:Name="DeviceTypeComboBox" SelectionChanged ="TypeChanged" HorizontalAlignment="Left" Width="200px" Margin="0,5,0,10">
+                    <ComboBoxItem Content="Мишка" Tag="mouse"/>
+                    <ComboBoxItem Content="Клавіатура" Tag="keyboard"/>
+                </ComboBox>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Назва" />
+                        <TextBox x:Name="DeviceNameTextBox" Width="150px" Height="20px" Margin="5,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Ціна" />
+                        <TextBox x:Name="DevicePrice" Width="100px" Height="20px" Margin="5,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Тип підключення" />
+                        <ComboBox x:Name="DeviceConnectionType" HorizontalAlignment="Left" Width="200px" Margin="0,5,0,10">
+                            <ComboBoxItem Content="USB" Tag="USB"/>
+                            <ComboBoxItem Content="Bluetooth" Tag="Bluetooth"/>
+                        </ComboBox>
+                    </StackPanel>
 
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" x:Name="MousePanel" Visibility="Collapsed">
+                    <Label Content="Кількість кнопок" />
+                    <TextBox x:Name="MouseNumberOfButtons" Width="100px" Height="20px" Margin="5,0,0,0" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" x:Name="KeyboardPanel" Visibility="Collapsed">
+                    <Label Content="Тип перемикачів" />
+                    <ComboBox x:Name="KeyboardSwitchType" HorizontalAlignment="Left" Width="200px" Margin="0,5,0,10">
+                        <ComboBoxItem Content="Механічна" Tag="MECHANICAL"/>
+                        <ComboBoxItem Content="Мембранна" Tag="MEMBRANE"/>
+                        <ComboBoxItem Content="Оптична" Tag="OPTICAL"/>
+                    </ComboBox>
+                </StackPanel>
+                <Button Grid.Row="2" Grid.Column="1"
+                        Content="Додати"
+                        Height="35"
+                        Margin="0,20,0,0"
+                        VerticalAlignment="Top"
+                        Click="AddDevice_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Список девайсів" Grid.Row="2" Margin="0,0,0,0">
+            <DataGrid x:Name="DevicesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Тип девайса" Binding="{Binding TypeString}" />
+                    <DataGridTextColumn Header="Назва" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Price}" />
+                    <DataGridTextColumn Header="Тип підключення" Binding="{Binding ConnectionType}" />
+                    <DataGridTextColumn Header="Деталі" Binding="{Binding SpecialInfo}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GroupBox Header="Аналітика" Grid.Row="3" Margin="0,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Загальний термін служби всіх клавіатур: " FontWeight="Bold" x:Name="TotalServiceLifeTextBlock" />
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </Window>
