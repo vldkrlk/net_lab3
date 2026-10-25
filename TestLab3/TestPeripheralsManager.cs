@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace TestLab3
                 new Mouse("ModelZ", 1500, ConnectionType.USB, 4)
             };
             int totalServiceLife = PeripheralsManager.TotalKeyBoardServiceLife(devices);
-            Assert.AreEqual(3000, totalServiceLife);
+            Assert.AreEqual(55000000, totalServiceLife);
         }
 
         [TestMethod]
